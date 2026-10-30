@@ -3,6 +3,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * @author : Sipho Sehlapelo
@@ -58,6 +59,30 @@ public class EmployeeTest {
         double expectedNetSalary = (10000 + (10000 * 0.08)) - ((10000 + (10000 * 0.08)) * 0.15);
         double actualNetSalary = objEmp.calcNetSalary();
         assertEquals(expectedNetSalary,actualNetSalary);
+    }
+
+    @Test
+    @DisplayName("TC6 - Invalid Employee ID Throws Exception")
+    void testInvalidEmployeeId() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Employee("AB123", "Sipho", 10000, "SQA", Positions.Junior, "IT");
+        });
+    }
+
+    @Test
+    @DisplayName("TC7 - Salary Below Minimum Throws Exception")
+    void testSalaryBelowMinimum() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Employee("EM124", "Sipho", 3000, "SQA", Positions.Junior, "IT");
+        });
+    }
+
+    @Test
+    @DisplayName("TC8 - High Salary Increase Throws Custom Exception")
+    void testHighSalaryIncreaseException() {
+        assertThrows(HighSalaryIncrease.class, () -> {
+            objEmp.raiseSalary(0.60);
+        });
     }
 
 }
