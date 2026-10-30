@@ -129,7 +129,10 @@ public class Employee implements IEmployee{
             return getPosition();
         }
 
-
+    /**
+     * Function that override the toString method to print employee information.
+     * @return employee details
+     */
     @Override
     public String toString() {
         return String.format(
@@ -235,10 +238,18 @@ public class Employee implements IEmployee{
         this.position = position;
     }
 
+    /**
+     * Getter function to return the value of an Empolyees department
+     * @return employees department
+     */
     public String getDepartment() {
         return department;
     }
 
+    /**
+     * Setter function to set the Empolyees Department
+     * @param department
+     */
     public void setDepartment(String department) {
         this.department = department;
     }
