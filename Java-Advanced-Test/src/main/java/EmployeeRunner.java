@@ -32,16 +32,11 @@ public class EmployeeRunner {
 
         for (Employee emp : employees) {
             try {
-                double newSalary = emp.raiseSalary(0.15);
-                emp.setSalary(newSalary);
-
-
-                Positions newPosition = emp.promote(7);
-                emp.setPosition(newPosition);
-
+                emp.raiseSalary(0.15);
             } catch (HighSalaryIncrease e) {
                 System.out.println("Notice for " + emp.getEmployeeName() + ": " + e.getMessage());
             }
+            emp.promote(7);
 
 
             System.out.println(emp);

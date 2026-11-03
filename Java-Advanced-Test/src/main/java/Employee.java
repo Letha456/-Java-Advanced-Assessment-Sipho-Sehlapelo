@@ -105,29 +105,32 @@ public class Employee implements IEmployee{
      * @param years
      * @return the new position of the employee
      */
-        public Positions promote(int years) {
-            if (years >= 3 && years <= 5) {
-                if (getPosition() == Positions.Junior) {
-                    return Positions.Intermediate;
-                } else if (getPosition() == Positions.Intermediate) {
-                    return Positions.Senior;
-                }
-            } else if (years >= 6 && years <= 10) {
-                if (getPosition() == Positions.Intermediate) {
-                    return Positions.Senior;
-                } else if (getPosition() == Positions.Senior) {
-                    return Positions.Director;
-                }
-            } else if (years > 10) {
-                if (getPosition() == Positions.Senior) {
-                    return Positions.Director;
-                } else if (getPosition() == Positions.Director) {
-                    return Positions.Executive;
-                }
-            }
+    public Positions promote(int years) {
+        Positions newPosition = getPosition();
 
-            return getPosition();
+        if (years >= 3 && years <= 5) {
+            if (getPosition() == Positions.Junior) {
+                newPosition = Positions.Intermediate;
+            } else if (getPosition() == Positions.Intermediate) {
+                newPosition = Positions.Senior;
+            }
+        } else if (years >= 6 && years <= 10) {
+            if (getPosition() == Positions.Intermediate) {
+                newPosition = Positions.Senior;
+            } else if (getPosition() == Positions.Senior) {
+                newPosition = Positions.Director;
+            }
+        } else if (years > 10) {
+            if (getPosition() == Positions.Senior) {
+                newPosition = Positions.Director;
+            } else if (getPosition() == Positions.Director) {
+                newPosition = Positions.Executive;
+            }
         }
+
+        setPosition(newPosition);
+        return newPosition;
+    }
 
     /**
      * Function that override the toString method to print employee information.
